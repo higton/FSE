@@ -1,0 +1,24 @@
+menu "Configuração do Wifi"
+
+    config ESP_WIFI_SSID
+        string "WiFi SSID"
+        default "ssid"
+
+    config ESP_WIFI_PASSWORD
+        string "Senha do Wifi"
+        default "minha_senha"
+
+    config ESP_MAXIMUM_RETRY
+        int "Número máximo de tentativas de conexão"
+        default 5
+endmenu
+
+menu "Configuração MQTT"
+    config ESP_MQTT_URI
+        string "Uri"
+        default "mqtt://0.0.0.0"
+
+    config ESP_MQTT_ACESS_TOKEN
+        string "Access token"
+        default "token_de_acesso"
+endmenu
