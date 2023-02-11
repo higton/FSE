@@ -3,10 +3,23 @@
 #include "esp_log.h"
 
 #include "pwm.h"
+#include "nvs_handle.h"
 
 #define LED GPIO_NUM_2
 
 #define TAG "PWM"
+
+void set_pwm_from_nvs() {
+    int value = read_nvs_value("pwm");
+    if (value != -1)
+    {
+        set_pwm(value);
+    }
+}
+
+void write_pwm_to_nvs(int32_t value) {
+    write_nvs_value("pwm", value);
+}
 
 void config_pwm() {
     ledc_timer_config_t timer_config = {
@@ -26,6 +39,7 @@ void config_pwm() {
         .duty = 0,
         .hpoint = 0};
     ledc_channel_config(&channel_config);
+    set_pwm_from_nvs();
 }
 
 int get_pwm_value() {
@@ -37,4 +51,5 @@ void set_pwm(int value) {
     ESP_LOGI(TAG, "Setting PWM to %d", value);
     ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, value*2.5);
     ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+    write_pwm_to_nvs(value);
 }
