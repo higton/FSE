@@ -3,6 +3,7 @@
 #include "esp_log.h"
 #include "cJson.h"
 #include "mqtt.h"
+#include "string.h"
 
 #include "dht11.h"
 #include "dht_handle.h"
@@ -76,6 +77,29 @@ void read_dht() {
     }
 }
 
+int batterie_get_dht11_data(char *type)
+{
+    DHT11_init(DHT11_PIN);
+
+    struct dht11_reading dht11_data;
+    dht11_data = DHT11_read();
+    if (dht11_data.status == DHT11_OK)
+    {
+        ESP_LOGI(TAG, "Latest Reading: [Humidity]: %d", dht11_data.humidity);
+        ESP_LOGI(TAG, "Latest Reading: [Temperature]: %d", dht11_data.temperature);
+    } else {
+        ESP_LOGE(TAG, "Error reading DHT11");
+    }
+
+    if (strcmp(type, "temperature") == 0)
+    {
+        return dht11_data.temperature;
+    }
+    else
+    {
+        return dht11_data.humidity;
+    }
+}
 
 void setup_dht()
 {

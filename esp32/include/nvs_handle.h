@@ -1,5 +1,5 @@
-#ifndef NVS_HANDLER_H
-#define NVS_HANDLER_H
+#ifndef NVS_HANDLE_H
+#define NVS_HANDLE_H
 
 #include "nvs.h"
 #include "nvs_flash.h"

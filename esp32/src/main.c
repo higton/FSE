@@ -8,7 +8,6 @@
 #include "connections.h"
 #include "nvs_flash.h"
 
-
 xSemaphoreHandle wifiSemaphore;
 xSemaphoreHandle wifiReconnectSemaphore;
 xSemaphoreHandle mqttSemaphore;

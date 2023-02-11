@@ -11,9 +11,13 @@
 #include "mqtt.h"
 #include "pwm.h"
 #include "dht_handle.h"
+#include "batterie_mode.h"
 
 #define WIFI_CONNECT_DELAY_MS 5000
 #define WIFI_CONNECT_ATTEMPTS 3
+#define ESP_MODE CONFIG_ESP_POWER_MODE
+#define BATTERY_MODE 0
+#define AC_MODE 1
 
 extern xSemaphoreHandle wifiSemaphore;
 extern xSemaphoreHandle mqttSemaphore;
@@ -45,6 +49,13 @@ void connections()
   if (xSemaphoreTake(mqttSemaphore, portMAX_DELAY))
   {
     config_pwm();
-    setup_dht();
+    if (ESP_MODE == BATTERY_MODE)
+    {
+      ESP_LOGI("Modo Energia", "Funcionamento via bateria");
+      xTaskCreate(batterie_mode, "light_sleep_task", 4096, NULL, 1, NULL);
+    } else if (ESP_MODE == AC_MODE)
+    {
+      setup_dht();
+    }
   }
 }
