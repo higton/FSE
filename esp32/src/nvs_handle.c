@@ -40,7 +40,7 @@ int32_t read_nvs_value(char *attribute) {
   return value;
 }
 
-void write_nvs_value(char *attribute, int32_t value) {
+void write_value_to_nvs(char *attribute, int32_t value) {
   nvs_handle handle;
   esp_err_t nvs_result = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &handle);
 

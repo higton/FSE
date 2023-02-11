@@ -10,6 +10,7 @@
 #include "wifi.h"
 #include "mqtt.h"
 #include "pwm.h"
+#include "dht_handle.h"
 
 #define WIFI_CONNECT_DELAY_MS 5000
 #define WIFI_CONNECT_ATTEMPTS 3
@@ -44,5 +45,6 @@ void connections()
   if (xSemaphoreTake(mqttSemaphore, portMAX_DELAY))
   {
     config_pwm();
+    setup_dht();
   }
 }

@@ -18,7 +18,7 @@ void set_pwm_from_nvs() {
 }
 
 void write_pwm_to_nvs(int32_t value) {
-    write_nvs_value("pwm", value);
+    write_value_to_nvs("pwm", value);
 }
 
 void config_pwm() {

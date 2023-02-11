@@ -5,6 +5,6 @@
 #include "nvs_flash.h"
 
 int32_t read_nvs_value(char *atributo);
-void write_nvs_value(char *atributo, int32_t valor);
+void write_value_to_nvs(char *atributo, int32_t valor);
 
 #endif
