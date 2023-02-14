@@ -1,5 +1,5 @@
-#ifndef __THREE_CLOR_H__
-#define __THREE_CLOR_H__
+#ifndef __RGB_LED_H__
+#define __RGB_LED_H__
 #include <stdint.h>
 
 #define HIGH 1
