@@ -21,6 +21,7 @@
 #include "mqtt.h"
 #include "cJson.h"
 #include "pwm.h"
+#include "three_clor.h"
 
 #define TAG "MQTT"
 #define MQTT_USERNAME CONFIG_ESP_MQTT_ACESS_TOKEN
@@ -81,6 +82,21 @@ void mqtt_event_data_handler(char *data) {
         // log the value
         ESP_LOGI(TAG, "Received value pwm: %d", value);
         set_pwm(value);
+    }
+    if(strstr(key, "setRedLed") != NULL){
+        // log the value
+        ESP_LOGI(TAG, "Received value red led: %d", value);
+        setup_red();
+    }
+    if(strstr(key, "setGreenLed") != NULL){
+        // log the value
+        ESP_LOGI(TAG, "Received value green led: %d", value);
+        setup_green();
+    }
+    if(strstr(key, "setBlueLed") != NULL){
+        // log the value
+        ESP_LOGI(TAG, "Received value blue led: %d", value);
+        setup_blue();
     }
 }
 
