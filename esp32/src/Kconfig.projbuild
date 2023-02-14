@@ -22,3 +22,16 @@ menu "Configuração MQTT"
         string "Access token"
         default "token_de_acesso"
 endmenu
+
+
+menu "Modo de energia"
+
+    config ESP_POWER_MODE
+        int "Modo de energia, 0 - economia, 1 - alta performance"
+        default 0
+        range 0 1
+        help
+            0 - Modo de economia de energia
+            1 - Modo de alta performance
+
+endmenu

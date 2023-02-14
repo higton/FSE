@@ -109,7 +109,7 @@ void wifi_start() {
 }
 
 void wifi_stop() {
-    ESP_LOGI(TAG, "Parado");
+    ESP_LOGI(TAG, "Stop");
     esp_wifi_stop();
 };
 
