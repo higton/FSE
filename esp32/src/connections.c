@@ -10,6 +10,7 @@
 #include "wifi.h"
 #include "mqtt.h"
 #include "pwm.h"
+#include "three_clor.h"
 #include "dht_handle.h"
 #include "batterie_mode.h"
 
@@ -49,6 +50,7 @@ void connections()
   if (xSemaphoreTake(mqttSemaphore, portMAX_DELAY))
   {
     config_pwm();
+    config_led();
     if (ESP_MODE == BATTERY_MODE)
     {
       ESP_LOGI("Modo Energia", "Funcionamento via bateria");
