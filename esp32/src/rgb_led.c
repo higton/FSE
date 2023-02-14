@@ -7,20 +7,30 @@
 #include "driver/gpio.h"
 #include "mqtt.h"
 #include "cJSON.h"
-#include "three_clor.h"
-
-// typedef struct led_info {
-//     bool red;
-//     bool green;
-//     bool blue;
-// }led_info;
-
-// led_info led_status
+#include "nvs_handle.h"
+#include "rgb_led.h"
 
 // #define LED GPIO_NUM_2
 #define LED_RED GPIO_NUM_4
 #define LED_GREEN GPIO_NUM_5
 #define LED_BLUE GPIO_NUM_18
+
+void set_led_from_nvs() {
+    int value = read_nvs_value("led");
+    if (value != -1)
+    {
+      if(value == 1)
+        setup_red();
+      if(value == 2)
+        setup_green();
+      if(value == 3)
+        setup_blue();
+    }
+}
+
+void write_led_to_nvs(int32_t value) {
+    write_value_to_nvs("led", value);
+}
 
 void config_led()
 {
@@ -30,6 +40,8 @@ void config_led()
   gpio_set_direction(LED_RED, GPIO_MODE_OUTPUT);
   gpio_set_direction(LED_GREEN, GPIO_MODE_OUTPUT);
   gpio_set_direction(LED_BLUE, GPIO_MODE_OUTPUT);
+
+  set_led_from_nvs();
 }
 
 void setup_red()
@@ -37,6 +49,7 @@ void setup_red()
   gpio_set_level(LED_BLUE, LOW);
   gpio_set_level(LED_GREEN, LOW);
   gpio_set_level(LED_RED, HIGH);
+  write_led_to_nvs(1);
 }
 
 void setup_green()
@@ -44,6 +57,7 @@ void setup_green()
   gpio_set_level(LED_BLUE, LOW);
   gpio_set_level(LED_GREEN, HIGH);
   gpio_set_level(LED_RED, LOW);
+  write_led_to_nvs(2);
 }
 
 void setup_blue()
@@ -51,4 +65,5 @@ void setup_blue()
   gpio_set_level(LED_BLUE, HIGH);
   gpio_set_level(LED_GREEN, LOW);
   gpio_set_level(LED_RED, LOW);
+  write_led_to_nvs(3);
 }
