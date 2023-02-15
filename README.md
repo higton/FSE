@@ -16,6 +16,7 @@ Os microcontroladores ESP32 irão controlar a aquisição de dados de sensores, 
 
 Toda a comunicação foi feita via rede Wifi com o protocolo MQTT e foi provido um servidor central para cadastro e controle dos dispositivos através da plataforma Thingsboard.
 
+Para saber um pouco mais sobre o projeto da disciplina, acesse esse [link](https://gitlab.com/fse_fga/trabalhos-2022_2/trabalho-final-2022-2) aqui.
 
 ## Dispositivo montado na plataforma Thingsboard pelo grupo
 
