@@ -25,6 +25,7 @@ Para saber um pouco mais sobre o projeto da disciplina, acesse esse [link](https
 
 ## Recursos utilizados
 
+- Framework ESP-IDF (versão 5.0)
 - PlatformIO
 
 ## Utilização
